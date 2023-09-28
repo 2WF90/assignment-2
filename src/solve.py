@@ -16,6 +16,19 @@
 import json
 
 
+"""
+Polynomial arithmetic:
+1. addition (-), subtraction (-), reduction (--), multiplication (-)
+2. long_division (++)
+3. xgcd (++)
+4. irreducibily_check (++)
+5. irreducible_element_generation (+)
+
+Finite field arithmetic:
+6. multiplication (--), inversion (+)
+7. primitivity check (++)
+"""
+
 def solve(exercise: object):
     exercise_type = exercise["type"]
     exercise_task = exercise["task"]
