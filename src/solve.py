@@ -44,13 +44,13 @@ def solve(exercise: object):
             a = Polynomial(exercise["f"])
             b = Polynomial(exercise["g"])
             result = additionPoly(a, b, integer_modulus)
-            return {"answer": result.get_exponents()}
+            return {"answer": result.get_sanitized()}
 
         if exercise_task == "subtraction":
             a = Polynomial(exercise["f"])
             b = Polynomial(exercise["g"])
             result = subtractionPoly(a, b, integer_modulus)
-            return {"answer": result.get_exponents()}
+            return {"answer": result.get_sanitized()}
 
         return {"answer": None}
 
