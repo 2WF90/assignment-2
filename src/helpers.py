@@ -53,12 +53,6 @@ def get_degree_and_leading_coefficient(f: list[int]):
     Returns:
     - An integer representing the degree of the polynomial.
     """
-    # for i in range(len(f) - 1, -1, -1):
-    #     if f[i] != 0:
-    #         return i, f[i]
-
-    # return 0, 0
-
     for degree, coefficient in reversed(list(enumerate(f))):
         if coefficient != 0:
             return degree, coefficient
