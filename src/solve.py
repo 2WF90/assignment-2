@@ -15,6 +15,9 @@
 ##
 import json
 
+from src.polynomial.addition import add
+from src.polynomial.subtraction import subtract
+
 
 """
 Polynomial arithmetic:
@@ -25,8 +28,10 @@ Polynomial arithmetic:
 5. irreducible_element_generation (+)
 
 Finite field arithmetic:
-6. multiplication (--), inversion (+)
-7. primitivity check (++)
+6. inversion (+)
+7. division (-)
+8. primitivity_check (++)
+9. primitive_element_generation (+)
 """
 
 def solve(exercise: object):
@@ -39,7 +44,11 @@ def solve(exercise: object):
         return {"answer": None}
 
     if exercise_type == "polynomial_arithmetic":
-        return {}
+        if exercise_task == "addition":
+            return {"answer": add(integer_modulus, exercise["f"], exercise["g"])}
+
+        elif exercise_task == "subtraction":
+            return {"answer": subtract(integer_modulus, exercise["f"], exercise["g"])}
 
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]
