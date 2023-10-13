@@ -9,7 +9,5 @@ def subtract(modulus: int, f: list[int], g: list[int]) -> list[int]:
 
     result = [(x - g[i]) % modulus for i, x in enumerate(f)]
 
-    remove_leading_zeros(result)
-
     return result
 
