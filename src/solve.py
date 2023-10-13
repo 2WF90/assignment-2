@@ -26,12 +26,13 @@ Polynomial arithmetic:
 3. xgcd (++)
 4. irreducibily_check (++)
 5. irreducible_element_generation (+)
+(6. modular_exponentiation (++))
 
 Finite field arithmetic:
-6. inversion (+)
-7. division (-)
-8. primitivity_check (++)
-9. primitive_element_generation (+)
+7. inversion (+)
+8. division (-)
+9. primitivity_check (++)
+10. primitive_element_generation (+)
 """
 
 def solve(exercise: object):
