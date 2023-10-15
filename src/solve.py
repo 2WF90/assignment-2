@@ -14,10 +14,8 @@
 # Christian Groothuis (1715534)
 ##
 import json
-
-from src.polynomial.addition import add
-from src.polynomial.subtraction import subtract
-
+from src.basicOperations import addition, subtraction
+from src.listHelper import strip
 
 """
 Polynomial arithmetic:
@@ -35,21 +33,29 @@ Finite field arithmetic:
 10. primitive_element_generation (+)
 """
 
+
 def solve(exercise: object):
     exercise_type = exercise["type"]
     exercise_task = exercise["task"]
     integer_modulus = exercise["integer_modulus"]
 
-
-    if integer_modulus <= 0:
+    if integer_modulus < 2:  # disallowed as per definition of assingment
         return {"answer": None}
 
     if exercise_type == "polynomial_arithmetic":
         if exercise_task == "addition":
-            return {"answer": add(integer_modulus, exercise["f"], exercise["g"])}
+            a = exercise["f"]
+            b = exercise["g"]
+            result = addition(a, b, integer_modulus)
+            return {"answer": strip(result)}
 
-        elif exercise_task == "subtraction":
-            return {"answer": subtract(integer_modulus, exercise["f"], exercise["g"])}
+        if exercise_task == "subtraction":
+            a = exercise["f"]
+            b = exercise["g"]
+            result = subtraction(a, b, integer_modulus)
+            return {"answer": strip(result)}
+
+        return {"answer": None}
 
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]
