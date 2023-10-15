@@ -69,6 +69,28 @@ def solve(exercise: object):
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]
 
+        if exercise_task == "addition":
+            a = exercise["f"]
+            b = exercise["g"]
+            # TODO reduce
+            result = addition(a, b, integer_modulus)
+            return {"answer": strip(result)}
+
+        if exercise_task == "subtraction":
+            a = exercise["f"]
+            b = exercise["g"]
+            # TODO reduce
+            result = subtraction(a, b, integer_modulus)
+            return {"answer": strip(result)}
+
+        if exercise_task == "multiplication":
+            a = exercise["f"]
+            b = exercise["g"]
+            # TODO reduce
+            result = multiply(a, b, integer_modulus)
+            return {"answer": strip(result)}
+
+
 
 def solve_from_file(exercise_location: str):
     with open(exercise_location, "r") as exercise_file:

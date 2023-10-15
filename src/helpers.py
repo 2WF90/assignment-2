@@ -11,7 +11,7 @@ def strip(l: list[int]) -> list[int]:
         if l[i] != 0:
             return l[: i + 1]
 
-    return list()
+    return list([0])
 
 
 def match_length(f: list[int], g: list[int]) -> tuple[list[int], list[int], int]:
