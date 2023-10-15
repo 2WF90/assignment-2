@@ -29,8 +29,8 @@ Polynomial arithmetic:
 
 Finite field arithmetic:
 - polynomial reduction by polynomial_modulus (kijken wat snelste is: long_division, barret, ...) (++)
-- inversion (+)
-- division (-)
+- inversion (using xgcd or a^-1 = a^(p^n - 2) with modular_exponentation) (+)
+- division (multiply by inverse) (-)
 - primitivity_check (++)
 - primitive_element_generation (+)
 """
@@ -94,6 +94,12 @@ def solve(exercise: object):
             # TODO reduce
             result = multiply(a, b, integer_modulus)
             return {"answer": strip(result)}
+
+        if exercise_task == "division":
+            f = exercise["f"]
+            g = exercise["g"]
+            q, r = long_division(f, g, integer_modulus)
+            return {"answer-q": strip(q), "answer-r": strip(r)}
 
 
 def solve_from_file(exercise_location: str):
