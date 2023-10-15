@@ -9,7 +9,7 @@ def test_subZero():
 
     r = subtraction(a, b, m)
 
-    assert [] == strip(r)  # Is this [0] or just an empty list???
+    assert [0] == strip(r)
 
 
 def test_subNegative():
