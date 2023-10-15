@@ -14,7 +14,8 @@
 # Christian Groothuis (1715534)
 ##
 import json
-
+from src.basicOperations import addition, subtraction
+from src.listHelper import strip
 
 """
 Polynomial arithmetic:
@@ -35,11 +36,23 @@ def solve(exercise: object):
     integer_modulus = exercise["integer_modulus"]
 
 
-    if integer_modulus <= 0:
+    if integer_modulus < 2: #disallowed as per definition of assingment
         return {"answer": None}
 
     if exercise_type == "polynomial_arithmetic":
-        return {}
+        if exercise_task == "addition":
+            a = exercise["f"]
+            b = exercise["g"]
+            result = addition(a, b, integer_modulus)
+            return {"answer": strip(result)}
+
+        if exercise_task == "subtraction":
+            a = exercise["f"]
+            b = exercise["g"]
+            result = subtraction(a, b, integer_modulus)
+            return {"answer": strip(result)}
+
+        return {"answer": None}
 
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]
