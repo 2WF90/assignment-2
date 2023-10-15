@@ -22,6 +22,8 @@ def modular_exponentiation(f: list[int], power: int, modulus: int) -> list[int]:
 
     result = [1]
 
+    # TODO reduce when polynomial_modulus is given
+
     for bit in bin(power)[2:]:
         result = multiply(result, result, modulus)
 
