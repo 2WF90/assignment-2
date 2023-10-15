@@ -1,4 +1,3 @@
-from src.polynomial import Polynomial
 from itertools import zip_longest
 # Note ask if we can use itertools library (they will say yes just dont forget to ask)
 
@@ -6,27 +5,32 @@ from itertools import zip_longest
 # ADDITION AND SUBTRACTION, POLYNOMIAL
 #----------------------------------------------------------------
 
-# Both functions use practically the same logic
-# They iterate over the exponents in the polynomials and either subtract or add them
-# zip_longest tulpes the elements of the 2 lists, 
-# if one is longer than the other the short one is automatically padded with 0
+# Adds polynomial A and B mod the modulus
+#
+# Args:
+#   a: list of integers, representing polynomial A
+#   b: list of integers, representing polynomial B
+#   modulus: integer, modulus of resulting polynomial
+#
+# Returns: list of integers, representing the new polynomial
 
-def additionPoly(a: Polynomial, b: Polynomial, modulus: int) -> Polynomial:
-    exp = list()
+def addition(a: list[int], b: list[int], modulus: int) -> list[int]:
 
-    for n, m in zip_longest(a, b, fillvalue=0):
-        exp.append((n + m) % modulus)
+    return [(n + m) % modulus for n, m in zip_longest(a, b, fillvalue=0)]
+
+
+# Subtracts polynomial A and B mod the modulus
+#
+# Args:
+#   a: list of integers, representing polynomial A
+#   b: list of integers, representing polynomial B
+#   modulus: integer, modulus of resulting polynomial
+#
+# Returns: list of integers, representing the new polynomial
+
+def subtraction(a: list[int], b: list[int], modulus: int) -> list[int]:
     
-    return Polynomial(exponents=exp)
-
-
-def subtractionPoly(a: Polynomial, b: Polynomial, modulus: int) -> Polynomial:
-    exp = list()
-
-    for n, m in zip_longest(a, b, fillvalue=0):
-        exp.append((n - m) % modulus)
-    
-    return Polynomial(exponents=exp)
+    return [(n - m) % modulus for n, m in zip_longest(a, b, fillvalue=0)]
 
 
 #----------------------------------------------------------------

@@ -14,8 +14,8 @@
 # Christian Groothuis (1715534)
 ##
 import json
-from src.basicOperations import additionPoly, subtractionPoly
-from src.polynomial import Polynomial
+from src.basicOperations import addition, subtraction
+from src.listHelper import strip
 
 """
 Polynomial arithmetic:
@@ -41,16 +41,16 @@ def solve(exercise: object):
 
     if exercise_type == "polynomial_arithmetic":
         if exercise_task == "addition":
-            a = Polynomial(exercise["f"])
-            b = Polynomial(exercise["g"])
-            result = additionPoly(a, b, integer_modulus)
-            return {"answer": result.get_sanitized()}
+            a = exercise["f"]
+            b = exercise["g"]
+            result = addition(a, b, integer_modulus)
+            return {"answer": strip(result)}
 
         if exercise_task == "subtraction":
-            a = Polynomial(exercise["f"])
-            b = Polynomial(exercise["g"])
-            result = subtractionPoly(a, b, integer_modulus)
-            return {"answer": result.get_sanitized()}
+            a = exercise["f"]
+            b = exercise["g"]
+            result = subtraction(a, b, integer_modulus)
+            return {"answer": strip(result)}
 
         return {"answer": None}
 
