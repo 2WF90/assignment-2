@@ -14,8 +14,10 @@
 # Christian Groothuis (1715534)
 ##
 import json
-from src.basicOperations import addition, subtraction
-from src.listHelper import strip
+from src.helpers import strip
+
+from src.polynomial.addition import addition
+from src.polynomial.subtraction import subtraction
 
 """
 Polynomial arithmetic:

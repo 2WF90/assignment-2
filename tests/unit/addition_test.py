@@ -1,5 +1,6 @@
-from src.basicOperations import addition
-from src.listHelper import strip
+from src.helpers import strip
+from src.polynomial.addition import addition
+
 
 def test_addZero():
     a = [0]
@@ -8,7 +9,8 @@ def test_addZero():
 
     r = addition(a, b, m)
 
-    assert [] == strip(r) #Is this [0] or just an empty list???
+    assert [] == strip(r)  # Is this [0] or just an empty list???
+
 
 def test_addNegative():
     a = [-1, -3, -4]
@@ -19,6 +21,7 @@ def test_addNegative():
 
     assert [10, 11, 3] == strip(r)
 
+
 def test_addDifferentLen():
     a = [34, 56, 12, 98, 5, 4, 76, 6, 1]
     b = [2, 103]
@@ -27,6 +30,7 @@ def test_addDifferentLen():
     r = addition(a, b, m)
 
     assert [36, 0, 12, 45, 5, 4, 23, 6, 1] == strip(r)
+
 
 def test_addArbitrary():
     a = [1, 2, -4, 4, 0, 3, 1, -2]

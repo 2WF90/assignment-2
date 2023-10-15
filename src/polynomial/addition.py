@@ -1,12 +1,19 @@
-from src.helpers import equalize_array_length, remove_leading_zeros
+from itertools import zip_longest
+
+# Note ask if we can use itertools library (they will say yes just dont forget to ask)
+
+# ----------------------------------------------------------------
+# POLYNOMIAL ADDITION
+# ----------------------------------------------------------------
 
 
-def add(modulus: int, f: list[int], g: list[int]) -> list[int]:
-    if modulus <= 0:
-        raise ValueError("Modulus must be > 0")
-
-    equalize_array_length(f, g)
-
-    result = [(x + g[i]) % modulus for i, x in enumerate(f)]
-
-    return result
+# Adds polynomial A and B mod the modulus
+#
+# Args:
+#   a: list of integers, representing polynomial A
+#   b: list of integers, representing polynomial B
+#   modulus: integer, modulus of resulting polynomial
+#
+# Returns: list of integers, representing the new polynomial
+def addition(a: list[int], b: list[int], modulus: int) -> list[int]:
+    return [(n + m) % modulus for n, m in zip_longest(a, b, fillvalue=0)]

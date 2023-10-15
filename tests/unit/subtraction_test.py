@@ -1,5 +1,6 @@
-from src.basicOperations import subtraction
-from src.listHelper import strip
+from src.helpers import strip
+from src.polynomial.subtraction import subtraction
+
 
 def test_subZero():
     a = [0]
@@ -8,7 +9,8 @@ def test_subZero():
 
     r = subtraction(a, b, m)
 
-    assert [] == strip(r) #Is this [0] or just an empty list???
+    assert [] == strip(r)  # Is this [0] or just an empty list???
+
 
 def test_subNegative():
     a = [13, 5, 7, 9, 0, 1]
@@ -19,6 +21,7 @@ def test_subNegative():
 
     assert [14, 8, 11, 6, 2, 11] == strip(r)
 
+
 def test_subDifferentLen():
     a = [5, 6, 0, 2]
     b = [3, 0, 0, 7, 1, 3, 0, 4]
@@ -27,6 +30,7 @@ def test_subDifferentLen():
     r = subtraction(a, b, m)
 
     assert [2, 6, 0, 3, 7, 5, 0, 4] == strip(r)
+
 
 def test_subArbitrary():
     a = [-3, -13, -3, 27, 23, 15, 6, 0, 0, 1, 9]
