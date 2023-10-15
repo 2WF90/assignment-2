@@ -23,7 +23,6 @@ from src.polynomial.subtraction import subtraction
 
 """
 Polynomial arithmetic:
-- long_division (++)
 - xgcd (++)
 - irreducibily_check (++)
 - irreducible_element_generation (+)
