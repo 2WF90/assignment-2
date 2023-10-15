@@ -17,6 +17,7 @@ import json
 from src.helpers import strip
 
 from src.polynomial.addition import addition
+from src.polynomial.long_division import long_division
 from src.polynomial.multiplication import multiply
 from src.polynomial.subtraction import subtraction
 
@@ -63,6 +64,12 @@ def solve(exercise: object):
             result = multiply(f, g, integer_modulus)
             return {"answer": strip(result)}
 
+        if exercise_task == "long_division":
+            f = exercise["f"]
+            g = exercise["g"]
+            q, r = long_division(f, g, integer_modulus)
+            return {"answer-q": strip(q), "answer-r": strip(r)}
+
         return {"answer": None}
 
     elif exercise_type == "finite_field_arithmetic":
@@ -88,7 +95,6 @@ def solve(exercise: object):
             # TODO reduce
             result = multiply(a, b, integer_modulus)
             return {"answer": strip(result)}
-
 
 
 def solve_from_file(exercise_location: str):
