@@ -22,18 +22,17 @@ from src.polynomial.subtraction import subtraction
 
 """
 Polynomial arithmetic:
-1. addition (-), subtraction (-), reduction (--), multiplication (-)
-2. long_division (++)
-3. xgcd (++)
-4. irreducibily_check (++)
-5. irreducible_element_generation (+)
-(6. modular_exponentiation (++))
+- long_division (++)
+- xgcd (++)
+- irreducibily_check (++)
+- irreducible_element_generation (+)
 
 Finite field arithmetic:
-7. inversion (+)
-8. division (-)
-9. primitivity_check (++)
-10. primitive_element_generation (+)
+- polynomial reduction by polynomial_modulus (kijken wat snelste is: long_division, barret, ...) (++)
+- inversion (+)
+- division (-)
+- primitivity_check (++)
+- primitive_element_generation (+)
 """
 
 
