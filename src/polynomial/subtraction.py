@@ -1,7 +1,7 @@
 from itertools import zip_longest
 
 # ----------------------------------------------------------------
-# POLYNOMIAL ADDITION
+# POLYNOMIAL SUBTRACTION
 # ----------------------------------------------------------------
 
 
