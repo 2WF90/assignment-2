@@ -14,6 +14,27 @@ def strip(l: list[int]) -> list[int]:
     return list()
 
 
+def match_length(f: list[int], g: list[int]) -> tuple[list[int], list[int], int]:
+    """
+    Pads the input lists with zeros to ensure they have the same length, and returns the padded lists and their length.
+
+    Args:
+        f (list[int]): The first list to be padded.
+        g (list[int]): The second list to be padded.
+
+    Returns:
+        tuple[list[int], list[int], int]: A tuple containing the padded lists and their length.
+    """
+    f_length = len(f)
+    g_length = len(g)
+    max_length = max(f_length, g_length)
+
+    padded_f = f + [0] * (max_length - f_length)
+    padded_g = g + [0] * (max_length - g_length)
+
+    return padded_f, padded_g, max_length
+
+
 def get_degree_and_leading_coefficient(f: list[int]):
     """
     Returns the degree of the polynomial `f`.
