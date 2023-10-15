@@ -8,7 +8,17 @@ from src.polynomial.subtraction import subtraction
 
 
 def multiply(f: list[int], g: list[int], modulus: int) -> list[int]:
-    """Multiply two polynomials using karatsuba algorithm"""
+    """
+    Multiplies two polynomials f and g using the Karatsuba algorithm.
+
+    Args:
+        f (list[int]): The first polynomial represented as a list of coefficients.
+        g (list[int]): The second polynomial represented as a list of coefficients.
+        modulus (int): The modulus to be used in the arithmetic operations.
+
+    Returns:
+        list[int]: The resulting polynomial represented as a list of coefficients.
+    """
     f_padded, g_padded, n = match_length(f, g)
 
     if n < 64:
@@ -42,8 +52,17 @@ def multiply(f: list[int], g: list[int], modulus: int) -> list[int]:
 
 
 def multiply_primary(f: list[int], g: list[int], modulus: int) -> list[int]:
-    """Multiply two polynomials using primary method modulus m"""
+    """
+    Multiplies two polynomials f and g using the primary school method.
 
+    Args:
+        f (list[int]): The coefficients of the first polynomial.
+        g (list[int]): The coefficients of the second polynomial.
+        modulus (int): The modulus to use for the coefficients.
+
+    Returns:
+        list[int]: The coefficients of the resulting polynomial.
+    """
     n = len(f)
 
     result = [0] * ((n << 1) - 1)
@@ -55,5 +74,3 @@ def multiply_primary(f: list[int], g: list[int], modulus: int) -> list[int]:
             result[index] = result[index] % modulus
 
     return result
-
-    # return [r % modulus for r in result] # or return this and no modulus in loop
