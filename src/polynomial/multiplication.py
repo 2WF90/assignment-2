@@ -1,8 +1,7 @@
 # Implement karatsuba and use primary method within karatsuba when n < 32 (experiment maybe with this threshold)
 
 
-from itertools import zip_longest
-from src.helpers import match_length, strip
+from src.helpers import match_length
 
 from src.polynomial.addition import addition
 from src.polynomial.subtraction import subtraction
@@ -12,16 +11,13 @@ def multiply(f: list[int], g: list[int], modulus: int) -> list[int]:
     """Multiply two polynomials using karatsuba algorithm"""
     f_padded, g_padded, n = match_length(f, g)
 
-    if n == 1:
-        return [f_padded[0] * g_padded[0] % modulus]
+    if n < 64:
+        return multiply_primary(f_padded, g_padded, modulus)
 
     if n & 1:
         f_padded.append(0)
         g_padded.append(0)
         n += 1
-
-    if n < 64:
-        return multiply_primary(f_padded, g_padded, modulus)
 
     half_n = n >> 1
 
