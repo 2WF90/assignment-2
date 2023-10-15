@@ -14,6 +14,7 @@
 # Christian Groothuis (1715534)
 ##
 import json
+from src.finite_field.inversion import inverse
 from src.helpers import strip
 
 from src.polynomial.addition import addition
@@ -75,24 +76,30 @@ def solve(exercise: object):
         polynomial_modulus = exercise["polynomial_modulus"]
 
         if exercise_task == "addition":
-            a = exercise["f"]
-            b = exercise["g"]
+            f = exercise["f"]
+            g = exercise["g"]
             # TODO reduce
-            result = addition(a, b, integer_modulus)
+            result = addition(f, g, integer_modulus)
             return {"answer": strip(result)}
 
         if exercise_task == "subtraction":
-            a = exercise["f"]
-            b = exercise["g"]
+            f = exercise["f"]
+            g = exercise["g"]
             # TODO reduce
-            result = subtraction(a, b, integer_modulus)
+            result = subtraction(f, g, integer_modulus)
             return {"answer": strip(result)}
 
         if exercise_task == "multiplication":
-            a = exercise["f"]
-            b = exercise["g"]
+            f = exercise["f"]
+            g = exercise["g"]
             # TODO reduce
-            result = multiply(a, b, integer_modulus)
+            result = multiply(f, g, integer_modulus)
+            return {"answer": strip(result)}
+
+        if exercise_task == "inversion":
+            f = exercise["f"]
+            # TODO reduce
+            result = inverse(f, integer_modulus, polynomial_modulus)
             return {"answer": strip(result)}
 
 
