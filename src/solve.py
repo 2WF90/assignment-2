@@ -29,8 +29,8 @@ Polynomial arithmetic:
 - irreducible_element_generation (+)
 
 Finite field arithmetic:
-- polynomial reduction by polynomial_modulus (kijken wat snelste is: long_division, barret, ...) (++)
-- inversion (using xgcd or a^-1 = a^(p^n - 2) with modular_exponentation) (+)
+- polynomial reduction fixen (++)
+- inversion using xgcd (+)
 - division (multiply by inverse) (-)
 - primitivity_check (++)
 - primitive_element_generation (+)
