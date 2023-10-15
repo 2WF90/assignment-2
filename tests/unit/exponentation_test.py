@@ -1,5 +1,5 @@
 from src.helpers import strip
-from src.polynomial.exponentation import modular_exponentiation
+from src.finite_field.modular_exponentation import modular_exponentiation
 
 
 def test_power_2():

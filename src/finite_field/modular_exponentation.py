@@ -1,7 +1,7 @@
 from src.polynomial.multiplication import multiply
 
 
-def modular_exponentiation(f: list[int], power: int, modulus: int) -> list[int]:
+def modular_exponentiation(f: list[int], power: int, integer_modulus: int, polynomial_modulus: list[int] = None) -> list[int]:
     """
     Computes the modular exponentiation of a polynomial f raised to a power, modulo a given modulus, using left-to-right
     binary exponentiation.
@@ -22,12 +22,12 @@ def modular_exponentiation(f: list[int], power: int, modulus: int) -> list[int]:
 
     result = [1]
 
-    # TODO reduce when polynomial_modulus is given
 
     for bit in bin(power)[2:]:
-        result = multiply(result, result, modulus)
+        # TODO reduce when polynomial_modulus is given
+        result = multiply(result, result, integer_modulus)
 
         if bit == "1":
-            result = multiply(result, f, modulus)
+            result = multiply(result, f, integer_modulus)
 
     return result
