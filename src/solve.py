@@ -95,12 +95,6 @@ def solve(exercise: object):
             result = multiply(a, b, integer_modulus)
             return {"answer": strip(result)}
 
-        if exercise_task == "division":
-            f = exercise["f"]
-            g = exercise["g"]
-            q, r = long_division(f, g, integer_modulus)
-            return {"answer-q": strip(q), "answer-r": strip(r)}
-
 
 def solve_from_file(exercise_location: str):
     with open(exercise_location, "r") as exercise_file:
