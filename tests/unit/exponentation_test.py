@@ -44,3 +44,10 @@ def test_power_40():
         0,
         1,
     ]
+
+
+def test_ff():
+    f = [1, 4, 1]
+    polynomial_modulus = [1, 1, 0, 1]
+
+    assert strip(modular_exponentiation(f, 40, 5, polynomial_modulus)) == [0, 3, 1]

@@ -1,3 +1,5 @@
+from src.helpers import reduce_modulus
+from src.polynomial.long_division import long_division
 from src.polynomial.multiplication import multiply
 
 
@@ -29,5 +31,10 @@ def modular_exponentiation(f: list[int], power: int, integer_modulus: int, polyn
 
         if bit == "1":
             result = multiply(result, f, integer_modulus)
+
+        result = reduce_modulus(result, integer_modulus)
+
+        if polynomial_modulus is not None:
+            result = long_division(result, polynomial_modulus, integer_modulus)[1]
 
     return result

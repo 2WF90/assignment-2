@@ -52,7 +52,7 @@ def get_degree_and_leading_coefficient(f: list[int]):
     return 0, 0
 
 
-def reduce_modulus(modulus: int, f: list[int]):
+def reduce_modulus(f: list[int], modulus: int):
     """
     Reduces each element in the given list `f` modulo `modulus`.
 
