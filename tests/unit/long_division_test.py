@@ -13,3 +13,24 @@ def test_divisor_larger_than_dividend():
     g = [1, 0, 1, 0, 1, 1]
 
     assert ([0], f) == long_division(f, g, 19)
+
+
+def test_case():
+    f = [0, 0, 0, 0, 1, 1]
+    g = [1, 9, 0, 0, 1]
+
+    assert ([1, 1], [9, 0, 1]) == long_division(f, g, 10)
+
+
+def test_another():
+    f = [1, 9, 0, 0, 1]
+    g = [9, 0, 1]
+
+    assert ([1, 0, 1], [2, 9]) == long_division(f, g, 10)
+
+
+def test_inverse_leading_coefficient():
+    f = [9, 0, 1]
+    g = [2, 9]
+
+    assert ([8,9], [3]) == long_division(f, g, 10)
