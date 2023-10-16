@@ -1,4 +1,4 @@
-from src.helpers import strip
+from src.helpers import reduce_int_modulus, strip
 
 
 def long_division(
@@ -32,12 +32,14 @@ def long_division(
 
         qoutient.insert(0, leading_coeff)
 
-        for i in range(len(g)):
+        for i in range(
+            len(g)
+        ):  # using subtract and multiply gave big loop on modular exponentiation test for some reason -> check
             remainder[-i - 1] -= leading_coeff * g[-i - 1]
 
         remainder = strip(remainder)
 
-    remainder = [x % integer_modulus for x in remainder]
+    remainder = reduce_int_modulus(remainder, integer_modulus)
 
     if qoutient == []:
         qoutient = [0]

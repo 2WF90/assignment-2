@@ -17,20 +17,20 @@ import json
 from src.finite_field.inversion import inverse
 from src.helpers import strip
 
-from src.polynomial.addition import addition
+from src.polynomial.addition import add
 from src.polynomial.long_division import long_division
 from src.polynomial.multiplication import multiply
-from src.polynomial.subtraction import subtraction
+from src.polynomial.subtraction import subtract
 
 """
 Polynomial arithmetic:
 - xgcd (++)
-- irreducibily_check (++)
+- irreducibility_check (++)
 - irreducible_element_generation (+)
 
 Finite field arithmetic:
-- polynomial reduction fixen (++)
-- inversion using xgcd (+)
+- polynomial reduction fixen (+)
+- inversion (using xgcd) (-)
 - division (multiply by inverse) (-)
 - primitivity_check (++)
 - primitive_element_generation (+)
@@ -49,13 +49,13 @@ def solve(exercise: object):
         if exercise_task == "addition":
             a = exercise["f"]
             b = exercise["g"]
-            result = addition(a, b, integer_modulus)
+            result = add(a, b, modulus=integer_modulus)
             return {"answer": strip(result)}
 
         if exercise_task == "subtraction":
             a = exercise["f"]
             b = exercise["g"]
-            result = subtraction(a, b, integer_modulus)
+            result = subtract(a, b, modulus=integer_modulus)
             return {"answer": strip(result)}
 
         if exercise_task == "multiplication":
@@ -70,8 +70,6 @@ def solve(exercise: object):
             q, r = long_division(f, g, integer_modulus)
             return {"answer-q": strip(q), "answer-r": strip(r)}
 
-        return {"answer": None}
-
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]
 
@@ -79,14 +77,14 @@ def solve(exercise: object):
             f = exercise["f"]
             g = exercise["g"]
             # TODO reduce
-            result = addition(f, g, integer_modulus)
+            result = add(f, g, modulus=integer_modulus)
             return {"answer": strip(result)}
 
         if exercise_task == "subtraction":
             f = exercise["f"]
             g = exercise["g"]
             # TODO reduce
-            result = subtraction(f, g, integer_modulus)
+            result = subtract(f, g, modulus=integer_modulus)
             return {"answer": strip(result)}
 
         if exercise_task == "multiplication":
@@ -101,6 +99,8 @@ def solve(exercise: object):
             # TODO reduce
             result = inverse(f, integer_modulus, polynomial_modulus)
             return {"answer": strip(result)}
+
+    return {"answer": None}
 
 
 def solve_from_file(exercise_location: str):
