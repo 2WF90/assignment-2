@@ -6,14 +6,15 @@ from itertools import zip_longest
 # POLYNOMIAL ADDITION
 # ----------------------------------------------------------------
 
+"""
+Adds together multiple polynomials with coefficients in Z_modulus.
 
-# Adds polynomial A and B mod the modulus
-#
-# Args:
-#   a: list of integers, representing polynomial A
-#   b: list of integers, representing polynomial B
-#   modulus: integer, modulus of resulting polynomial
-#
-# Returns: list of integers, representing the new polynomial
-def addition(a: list[int], b: list[int], modulus: int) -> list[int]:
-    return [(n + m) % modulus for n, m in zip_longest(a, b, fillvalue=0)]
+Args:
+    *args: Variable length argument list of lists of integers representing the coefficients of the polynomials to be added.
+    modulus: An integer representing the modulus to be used in the addition operation.
+
+Returns:
+    A list of integers representing the coefficients of the resulting polynomial.
+"""
+def add(*args: list[int], modulus: int) -> list[int]:
+    return [sum(x) % modulus for x in zip_longest(*args, fillvalue=0)]

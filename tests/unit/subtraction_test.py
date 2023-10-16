@@ -1,5 +1,5 @@
 from src.helpers import strip
-from src.polynomial.subtraction import subtraction
+from src.polynomial.subtraction import subtract
 
 
 def test_subZero():
@@ -7,7 +7,7 @@ def test_subZero():
     b = [0, 0]
     m = 2
 
-    r = subtraction(a, b, m)
+    r = subtract(a, b, modulus=m)
 
     assert [0] == strip(r)
 
@@ -17,7 +17,7 @@ def test_subNegative():
     b = [-1, -3, -4, -14, -2, -10]
     m = 17
 
-    r = subtraction(a, b, m)
+    r = subtract(a, b, modulus=m)
 
     assert [14, 8, 11, 6, 2, 11] == strip(r)
 
@@ -27,7 +27,7 @@ def test_subDifferentLen():
     b = [3, 0, 0, 7, 1, 3, 0, 4]
     m = 8
 
-    r = subtraction(a, b, m)
+    r = subtract(a, b, modulus=m)
 
     assert [2, 6, 0, 3, 7, 5, 0, 4] == strip(r)
 
@@ -37,6 +37,6 @@ def test_subArbitrary():
     b = [-6, 0, 5, 9, 13, -18, 17, 16]
     m = 29
 
-    r = subtraction(a, b, m)
+    r = subtract(a, b, modulus=m)
 
     assert [3, 16, 21, 18, 10, 4, 18, 13, 0, 1, 9] == strip(r)

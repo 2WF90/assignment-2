@@ -1,5 +1,5 @@
 from src.helpers import strip
-from src.polynomial.addition import addition
+from src.polynomial.addition import add
 
 
 def test_addZero():
@@ -7,7 +7,7 @@ def test_addZero():
     b = [0, 0]
     m = 2
 
-    r = addition(a, b, m)
+    r = add(a, b, modulus=m)
 
     assert [0] == strip(r)
 
@@ -17,7 +17,7 @@ def test_addNegative():
     b = [-2, -25, -6]
     m = 13
 
-    r = addition(a, b, m)
+    r = add(a, b, modulus=m)
 
     assert [10, 11, 3] == strip(r)
 
@@ -27,7 +27,7 @@ def test_addDifferentLen():
     b = [2, 103]
     m = 53
 
-    r = addition(a, b, m)
+    r = add(a, b, modulus=m)
 
     assert [36, 0, 12, 45, 5, 4, 23, 6, 1] == strip(r)
 
@@ -37,6 +37,6 @@ def test_addArbitrary():
     b = [0, 0, 4, 2, -3, 4, 0, 1, -3, 0, 2]
     m = 5
 
-    r = addition(a, b, m)
+    r = add(a, b, modulus=m)
 
     assert [1, 2, 0, 1, 2, 2, 1, 4, 2, 0, 2] == strip(r)

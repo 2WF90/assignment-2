@@ -1,10 +1,7 @@
-# Implement karatsuba and use primary method within karatsuba when n < 32 (experiment maybe with this threshold)
+from src.helpers import match_length, reduce_int_modulus
 
-
-from src.helpers import match_length
-
-from src.polynomial.addition import addition
-from src.polynomial.subtraction import subtraction
+from src.polynomial.addition import add
+from src.polynomial.subtraction import subtract
 
 
 def multiply(f: list[int], g: list[int], modulus: int) -> list[int]:
@@ -22,36 +19,35 @@ def multiply(f: list[int], g: list[int], modulus: int) -> list[int]:
     f_padded, g_padded, n = match_length(f, g)
 
     if n < 64:
-        return multiply_primary(f_padded, g_padded, modulus)
+        return primary_multiplication(f_padded, g_padded, modulus)
 
     if n & 1:
         f_padded.append(0)
         g_padded.append(0)
         n += 1
 
-    half_n = n >> 1
+    n_over_2 = n >> 1
 
-    x_lo, x_hi = f_padded[half_n:], f_padded[:half_n]
-    y_lo, y_hi = g_padded[half_n:], g_padded[:half_n]
+    x_lo, x_hi = f_padded[n_over_2:], f_padded[:n_over_2]
+    y_lo, y_hi = g_padded[n_over_2:], g_padded[:n_over_2]
 
     z_2 = multiply(x_hi, y_hi, modulus)
     z_0 = multiply(x_lo, y_lo, modulus)
-    z_1 = subtraction(
-        subtraction(
-            multiply(
-                addition(x_hi, x_lo, modulus), addition(y_hi, y_lo, modulus), modulus
-            ),
-            z_0,
+    z_1 = subtract(
+        multiply(
+            add(x_hi, x_lo, modulus=modulus),
+            add(y_hi, y_lo, modulus=modulus),
             modulus,
         ),
+        z_0,
         z_2,
-        modulus,
+        modulus=modulus,
     )
 
-    return addition(addition([0] * n + z_0, [0] * half_n + z_1, modulus), z_2, modulus)
+    return add(([0] * n) + z_0, ([0] * n_over_2) + z_1, z_2, modulus=modulus)
 
 
-def multiply_primary(f: list[int], g: list[int], modulus: int) -> list[int]:
+def primary_multiplication(f: list[int], g: list[int], modulus: int) -> list[int]:
     """
     Multiplies two polynomials f and g using the primary school method.
 
