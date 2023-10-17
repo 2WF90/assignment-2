@@ -1,5 +1,5 @@
 from src.helpers import reduce_int_modulus, strip
-from src.integer.inverse import modular_inverse
+from src.integer.inverse import integer_inverse
 
 
 def long_division(
@@ -26,23 +26,18 @@ def long_division(
         raise ZeroDivisionError("Cannot divide by zero")
 
     remainder = f
-    qoutient = [0] * (len(f) - len(g) + 1)
+    qoutient = [0] * max((len(f) - len(g) + 1), 1)
 
     while remainder != [0] and len(remainder) >= len(g):
         leading_coeff = (
-            modular_inverse(g[-1], integer_modulus) * remainder[-1] % integer_modulus
-        )
+            integer_inverse(g[-1], integer_modulus) * remainder[-1]
+        ) % integer_modulus
 
         qoutient[len(remainder) - len(g)] = leading_coeff
 
-        for i in range(
-            len(g)
-        ):  # using subtract and multiply gave big loop on modular exponentiation test for some reason -> check
+        for i in range(len(g)):
             remainder[-i - 1] -= leading_coeff * g[-i - 1] % integer_modulus
 
         remainder = reduce_int_modulus(strip(remainder), integer_modulus)
-
-    if qoutient == []:
-        qoutient = [0]
 
     return qoutient, remainder
