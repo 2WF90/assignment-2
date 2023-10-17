@@ -7,10 +7,10 @@ def extended_gcd(a: int, b: int):
     return (gcd, y - (b // a) * x, x)
 
 
-def modular_inverse(a: int, modulus: int):
-    gcd, x, _ = extended_gcd(a, modulus)
+def integer_inverse(x: int, modulus: int):
+    gcd, a_inverse, _ = extended_gcd(x, modulus)
 
     if gcd != 1:
         raise ValueError("Modular inverse does not exist")
 
-    return x % modulus
+    return a_inverse % modulus
