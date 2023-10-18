@@ -76,29 +76,29 @@ def solve(exercise: object):
         if exercise_task == "addition":
             f = exercise["f"]
             g = exercise["g"]
-            # TODO reduce
             result = add(f, g, modulus=integer_modulus)
-            return {"answer": strip(result)}
+            _, rem = long_division(result, polynomial_modulus, integer_modulus)
+            return {"answer": strip(rem)}
 
         if exercise_task == "subtraction":
             f = exercise["f"]
             g = exercise["g"]
-            # TODO reduce
             result = subtract(f, g, modulus=integer_modulus)
-            return {"answer": strip(result)}
+            _, rem = long_division(result, polynomial_modulus, integer_modulus)
+            return {"answer": strip(rem)}
 
         if exercise_task == "multiplication":
             f = exercise["f"]
             g = exercise["g"]
-            # TODO reduce
             result = multiply(f, g, integer_modulus)
-            return {"answer": strip(result)}
+            _, rem = long_division(result, polynomial_modulus, integer_modulus)
+            return {"answer": strip(rem)}
 
         if exercise_task == "inversion":
             f = exercise["f"]
-            # TODO reduce
             result = inverse(f, integer_modulus, polynomial_modulus)
-            return {"answer": strip(result)}
+            _, rem = long_division(result, polynomial_modulus, integer_modulus)
+            return {"answer": strip(rem)}
 
     return {"answer": None}
 
