@@ -21,6 +21,7 @@ from src.polynomial.addition import add
 from src.polynomial.long_division import long_division
 from src.polynomial.multiplication import multiply
 from src.polynomial.subtraction import subtract
+from src.polynomial.xgcd import xgcd
 
 """
 Polynomial arithmetic:
@@ -69,6 +70,12 @@ def solve(exercise: object):
             g = exercise["g"]
             q, r = long_division(f, g, integer_modulus)
             return {"answer-q": strip(q), "answer-r": strip(r)}
+
+        if exercise_task == "extended_euclidean_algorithm":
+            f = exercise["f"]
+            g = exercise["g"]
+            gcd, x, y = xgcd(f, g, integer_modulus)
+            return {"answer-a": strip(x), "answer-b": strip(y), "answer-gcd": strip(gcd)}
 
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]
