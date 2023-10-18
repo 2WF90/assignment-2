@@ -14,48 +14,93 @@
 # Christian Groothuis (1715534)
 ##
 import json
-from src.basicOperations import addition, subtraction
-from src.listHelper import strip
+from src.finite_field.inversion import inverse
+from src.helpers import strip
+
+from src.polynomial.addition import add
+from src.polynomial.long_division import long_division
+from src.polynomial.multiplication import multiply
+from src.polynomial.subtraction import subtract
 
 """
 Polynomial arithmetic:
-1. addition (-), subtraction (-), reduction (--), multiplication (-)
-2. long_division (++)
-3. xgcd (++)
-4. irreducibily_check (++)
-5. irreducible_element_generation (+)
+- xgcd (++)
+- irreducibility_check (++)
+- irreducible_element_generation (+)
 
 Finite field arithmetic:
-6. multiplication (--), inversion (+)
-7. primitivity check (++)
+- polynomial reduction fixen (+)
+- inversion (using xgcd) (-)
+- division (multiply by inverse) (-)
+- primitivity_check (++)
+- primitive_element_generation (+)
 """
+
 
 def solve(exercise: object):
     exercise_type = exercise["type"]
     exercise_task = exercise["task"]
     integer_modulus = exercise["integer_modulus"]
 
-
-    if integer_modulus < 2: #disallowed as per definition of assingment
+    if integer_modulus < 2:  # disallowed as per definition of assingment
         return {"answer": None}
 
     if exercise_type == "polynomial_arithmetic":
         if exercise_task == "addition":
             a = exercise["f"]
             b = exercise["g"]
-            result = addition(a, b, integer_modulus)
+            result = add(a, b, modulus=integer_modulus)
             return {"answer": strip(result)}
 
         if exercise_task == "subtraction":
             a = exercise["f"]
             b = exercise["g"]
-            result = subtraction(a, b, integer_modulus)
+            result = subtract(a, b, modulus=integer_modulus)
             return {"answer": strip(result)}
 
-        return {"answer": None}
+        if exercise_task == "multiplication":
+            f = exercise["f"]
+            g = exercise["g"]
+            result = multiply(f, g, integer_modulus)
+            return {"answer": strip(result)}
+
+        if exercise_task == "long_division":
+            f = exercise["f"]
+            g = exercise["g"]
+            q, r = long_division(f, g, integer_modulus)
+            return {"answer-q": strip(q), "answer-r": strip(r)}
 
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]
+
+        if exercise_task == "addition":
+            f = exercise["f"]
+            g = exercise["g"]
+            # TODO reduce
+            result = add(f, g, modulus=integer_modulus)
+            return {"answer": strip(result)}
+
+        if exercise_task == "subtraction":
+            f = exercise["f"]
+            g = exercise["g"]
+            # TODO reduce
+            result = subtract(f, g, modulus=integer_modulus)
+            return {"answer": strip(result)}
+
+        if exercise_task == "multiplication":
+            f = exercise["f"]
+            g = exercise["g"]
+            # TODO reduce
+            result = multiply(f, g, integer_modulus)
+            return {"answer": strip(result)}
+
+        if exercise_task == "inversion":
+            f = exercise["f"]
+            # TODO reduce
+            result = inverse(f, integer_modulus, polynomial_modulus)
+            return {"answer": strip(result)}
+
+    return {"answer": None}
 
 
 def solve_from_file(exercise_location: str):
