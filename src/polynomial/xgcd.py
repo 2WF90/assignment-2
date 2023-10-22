@@ -4,12 +4,33 @@ from src.polynomial.long_division import long_division
 from src.polynomial.subtraction import subtract
 from src.polynomial.multiplication import multiply
 
+"""
+Devides every coefficient in a polynomial f by a given number
+
+Param:
+    f: list of integers, represents the polynomial
+    num: integer, represents the number to devide with
+    modulus: integer, represents the modulus of the polynomial
+
+Returns:
+    list of integers, represent the resulting polynomial
+"""
 def divide_coefficients(f: list[int], num: int, modulus: int) -> list[int]:
     inv = integer_inverse(num, modulus)
 
     return strip([(n * inv) % modulus for n in f])
 
+"""
+Computes the greatest common divisor of 2 polynomials
 
+Param:
+    a: list of integers, represents the first polynomial
+    b: list of integers, represent the second polynomial
+    modulus: integer, represent the modulus of both polynomial
+
+Returns:
+    list of integers, represents the greatest common divisor of a and b (monic polynomial)
+"""
 def gcd(a: list[int], b: list[int], modulus: int) -> list[int]:
     b = strip(b)
 
@@ -21,8 +42,22 @@ def gcd(a: list[int], b: list[int], modulus: int) -> list[int]:
     _, lc = get_degree_and_leading_coefficient(a)
     return divide_coefficients(a, lc, modulus)
 
-# WARNING, this function heavily relies on the implementations of long_division, subtract and multiply
-# If at any point these functions change their input as a side effect then the whole thing breaks
+
+"""
+Computes the greatest common divisors and polynomials x and y such that ax + by = gcd(a, b)
+(Extended euclidian algorithm)
+
+WARNING, this function heavily relies on the implementations of long_division, subtract and multiply
+If at any point these functions change their input as a side effect then the whole thing breaks
+
+Param:
+    a: list of integers, represents the first polynomial
+    b: list of integers, represent the second polynomial
+    modulus: integer, represent the modulus of both polynomial
+
+Returns:
+    tuple of 3 list of integers, represents the gcd of a and b, x and y
+"""
 def xgcd(a: list[int], b: list[int], modulus: int) -> tuple[list[int], list[int], list[int]]:
     b = strip(b) 
     x, v, y, u = [1], [1], [0], [0]
