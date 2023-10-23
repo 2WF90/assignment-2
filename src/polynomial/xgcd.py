@@ -16,6 +16,9 @@ Returns:
     list of integers, represent the resulting polynomial
 """
 def divide_coefficients(f: list[int], num: int, modulus: int) -> list[int]:
+    if num == 0:
+        raise ValueError("Can not devide by zero")
+
     inv = integer_inverse(num, modulus)
 
     return strip([(n * inv) % modulus for n in f])
@@ -62,7 +65,7 @@ def xgcd(a: list[int], b: list[int], modulus: int) -> tuple[list[int], list[int]
     b = strip(b) 
     x, v, y, u = [1], [1], [0], [0]
 
-    while len(b) > 1 or b[0] != 0:
+    while b != [0]:
         #gcd part
         quot, rem = long_division(a, b, modulus)
         a = b
