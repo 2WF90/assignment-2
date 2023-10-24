@@ -1,4 +1,4 @@
-from itertools import zip_longest
+from src.helpers import zip_longest
 
 # ----------------------------------------------------------------
 # POLYNOMIAL SUBTRACTION
