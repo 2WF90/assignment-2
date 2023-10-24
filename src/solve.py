@@ -22,7 +22,7 @@ from src.polynomial.long_division import long_division
 from src.polynomial.multiplication import multiply
 from src.polynomial.subtraction import subtract
 from src.polynomial.xgcd import xgcd
-from src.finite_field.primitive import check_primitivity
+from src.finite_field.primitive import check_primitivity, generate_primitve
 
 """
 Polynomial arithmetic:
@@ -113,6 +113,11 @@ def solve(exercise: object):
             poly_mod = exercise["polynomial_modulus"]
             modulus = exercise["integer_modulus"]
             return {"answer": check_primitivity(f, poly_mod, modulus)}
+
+        if exercise_task == "primitive_element_generation":
+            poly_mod = exercise["polynomial_modulus"]
+            modulus = exercise["integer_modulus"]
+            return {"answer": generate_primitve(poly_mod, modulus)}
 
     return {"answer": None}
 
