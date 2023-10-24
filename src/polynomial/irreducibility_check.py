@@ -1,4 +1,4 @@
-from src.helpers import get_degree_and_leading_coefficient
+from src.helpers import get_degree_and_leading_coefficient, match_length
 from subtraction import subtract
 
 #used to make X^q^t
@@ -20,7 +20,7 @@ def irreducibility_check(
     # X^1 = [0,1] X^3 = [0,0,0,1] X^9 =[0,0,0,0,0,0,0,0,0,1]
 
 
-    while xgcd(f, subtract(polynomial_coefficients(degree**t), [0,1], integer_modulus))[2] == [1]:
+    while xgcd(f, subtract(match_length(polynomial_coefficients(degree**t), [0,1]), integer_modulus))[2] == [1]:
         t=t+1
     if t == degree:
         return True
