@@ -19,8 +19,9 @@ def irreducibility_check(
     #integer mod = 3 then X^3, X^9, X^27, 
     # X^1 = [0,1] X^3 = [0,0,0,1] X^9 =[0,0,0,0,0,0,0,0,0,1]
 
-
-    while xgcd(f, subtract(match_length(polynomial_coefficients(degree**t), [0,1]), integer_modulus))[2] == [1]:
+    matched_length = match_length(polynomial_coefficients(degree**t))
+    padded_x_power, padded_x = matched_length
+    while xgcd(f, subtract(padded_x_power, padded_x, integer_modulus))[2]==1:
         t=t+1
     if t == degree:
         return True
