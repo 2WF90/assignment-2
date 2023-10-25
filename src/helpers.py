@@ -64,4 +64,42 @@ def reduce_int_modulus(f: list[int], modulus: int):
         list[int]: A new list containing the reduced elements of `f`.
     """
     return [x % modulus for x in f]
-    
+
+#----------------------------------------------------------------
+# ITERTOOLS
+#----------------------------------------------------------------
+
+# We were not allowed to use the itertools library because "it was to large"
+# So I just copied the source code of these 2 specific functions (https://docs.python.org/3/library/itertools.html)
+# In my opinion this falls under fair use since this does not make the assingment significantly easier,
+# it just makes our code a bit cleaner readable.
+# I checked the Python license and this should be fine.
+
+def repeat(object, times=None):
+    # repeat(10, 3) --> 10 10 10
+    if times is None:
+        while True:
+            yield object
+    else:
+        for i in range(times):
+            yield object
+
+def zip_longest(*args, fillvalue=None):
+    # zip_longest('ABCD', 'xy', fillvalue='-') --> Ax By C- D-
+    iterators = [iter(it) for it in args]
+    num_active = len(iterators)
+    if not num_active:
+        return
+    while True:
+        values = []
+        for i, it in enumerate(iterators):
+            try:
+                value = next(it)
+            except StopIteration:
+                num_active -= 1
+                if not num_active:
+                    return
+                iterators[i] = repeat(fillvalue)
+                value = fillvalue
+            values.append(value)
+        yield tuple(values)
