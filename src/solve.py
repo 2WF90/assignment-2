@@ -21,6 +21,8 @@ from src.polynomial.addition import add
 from src.polynomial.long_division import long_division
 from src.polynomial.multiplication import multiply
 from src.polynomial.subtraction import subtract
+from src.polynomial.xgcd import xgcd
+from src.finite_field.primitive import check_primitivity, generate_primitve
 
 """
 Polynomial arithmetic:
@@ -70,35 +72,52 @@ def solve(exercise: object):
             q, r = long_division(f, g, integer_modulus)
             return {"answer-q": strip(q), "answer-r": strip(r)}
 
+        if exercise_task == "extended_euclidean_algorithm":
+            f = exercise["f"]
+            g = exercise["g"]
+            gcd, x, y = xgcd(f, g, integer_modulus)
+            return {"answer-a": strip(x), "answer-b": strip(y), "answer-gcd": strip(gcd)}
+
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]
 
         if exercise_task == "addition":
             f = exercise["f"]
             g = exercise["g"]
-            # TODO reduce
             result = add(f, g, modulus=integer_modulus)
-            return {"answer": strip(result)}
+            _, rem = long_division(result, polynomial_modulus, integer_modulus)
+            return {"answer": strip(rem)}
 
         if exercise_task == "subtraction":
             f = exercise["f"]
             g = exercise["g"]
-            # TODO reduce
             result = subtract(f, g, modulus=integer_modulus)
-            return {"answer": strip(result)}
+            _, rem = long_division(result, polynomial_modulus, integer_modulus)
+            return {"answer": strip(rem)}
 
         if exercise_task == "multiplication":
             f = exercise["f"]
             g = exercise["g"]
-            # TODO reduce
             result = multiply(f, g, integer_modulus)
-            return {"answer": strip(result)}
+            _, rem = long_division(result, polynomial_modulus, integer_modulus)
+            return {"answer": strip(rem)}
 
         if exercise_task == "inversion":
             f = exercise["f"]
-            # TODO reduce
             result = inverse(f, integer_modulus, polynomial_modulus)
-            return {"answer": strip(result)}
+            _, rem = long_division(result, polynomial_modulus, integer_modulus)
+            return {"answer": strip(rem)}
+        
+        if exercise_task == "primitivity_check":
+            f = exercise["f"]
+            poly_mod = exercise["polynomial_modulus"]
+            modulus = exercise["integer_modulus"]
+            return {"answer": check_primitivity(f, poly_mod, modulus)}
+
+        if exercise_task == "primitive_element_generation":
+            poly_mod = exercise["polynomial_modulus"]
+            modulus = exercise["integer_modulus"]
+            return {"answer": generate_primitve(poly_mod, modulus)}
 
     return {"answer": None}
 
