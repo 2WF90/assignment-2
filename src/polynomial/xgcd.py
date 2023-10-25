@@ -79,5 +79,10 @@ def xgcd(a: list[int], b: list[int], modulus: int) -> tuple[list[int], list[int]
         u = subtract(x_temp, strip(multiply(quot, u, modulus)), modulus=modulus)
         v = subtract(y_temp, strip(multiply(quot, v, modulus)), modulus=modulus)
 
-    _, lc = get_degree_and_leading_coefficient(a)
-    return divide_coefficients(a, lc, modulus), divide_coefficients(x, lc, modulus), divide_coefficients(y, lc, modulus)
+    if a[-1] != 1: # gcd is not monic
+        gcd_inverse = integer_inverse(a[-1], modulus)
+        a = multiply(a, [gcd_inverse], modulus)
+        x = multiply(x, [gcd_inverse], modulus)
+        y = multiply(y, [gcd_inverse], modulus)
+    
+    return a, x, y
