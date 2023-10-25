@@ -54,7 +54,7 @@ def test_xgcd_bin():
     modulus = 2
     assert ([0, 0, 1, 0, 1], [1, 0, 0, 0, 0, 0, 1, 1], [0, 0, 1, 0, 1]) == xgcd(a, b, modulus)
 
-def test_xgcd_axby_is_gcd_1():
+def test_axby_is_gcd_1():
     a = [1, 3, 7, 5, 0, 5]
     b = [9, 1, 8, 4, 6]
     modulus = 11
@@ -62,7 +62,7 @@ def test_xgcd_axby_is_gcd_1():
 
     assert div == strip(add(multiply(a, x, modulus), multiply(b, y, modulus), modulus=modulus))
 
-def test_xgcd_axby_is_gcd_1():
+def test_xgcd_is_gcd_1():
     a = [4, 3, 5, 3, 1, 4, 6, 4, 4, 1]
     b = [6, 5, 1, 3, 3, 1, 6, 3, 1, 5, 0, 6, 3, 1]
     modulus = 7
