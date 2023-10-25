@@ -14,6 +14,7 @@
 # Christian Groothuis (1715534)
 ##
 import json
+from src.finite_field.division import division
 from src.finite_field.inversion import inverse
 from src.helpers import strip
 
@@ -107,7 +108,16 @@ def solve(exercise: object):
             result = inverse(f, integer_modulus, polynomial_modulus)
             _, rem = long_division(result, polynomial_modulus, integer_modulus)
             return {"answer": strip(rem)}
-        
+
+        if exercise_task == "division":
+            f = exercise["f"]
+            g = exercise["g"]
+            try:
+                result = division(f, g, polynomial_modulus, integer_modulus)
+                return {"answer": strip(result)}
+            except ZeroDivisionError:
+                return {"answer": None}
+
         if exercise_task == "primitivity_check":
             f = exercise["f"]
             poly_mod = exercise["polynomial_modulus"]
