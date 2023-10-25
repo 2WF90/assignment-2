@@ -70,14 +70,21 @@ def solve(exercise: object):
         if exercise_task == "long_division":
             f = exercise["f"]
             g = exercise["g"]
-            q, r = long_division(f, g, integer_modulus)
-            return {"answer-q": strip(q), "answer-r": strip(r)}
+            try:
+                q, r = long_division(f, g, integer_modulus)
+                return {"answer-q": strip(q), "answer-r": strip(r)}
+            except ZeroDivisionError:
+                return {"answer-q": None, "answer-r": None}
 
         if exercise_task == "extended_euclidean_algorithm":
             f = exercise["f"]
             g = exercise["g"]
             gcd, x, y = xgcd(f, g, integer_modulus)
-            return {"answer-a": strip(x), "answer-b": strip(y), "answer-gcd": strip(gcd)}
+            return {
+                "answer-a": strip(x),
+                "answer-b": strip(y),
+                "answer-gcd": strip(gcd),
+            }
 
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]

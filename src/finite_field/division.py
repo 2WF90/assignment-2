@@ -23,10 +23,7 @@ def division(
     """
     f = strip(f)
 
-    if f == [0]:
-        return [0], [0]
-
-    if g == [0]:
+    if g == [0] or f == [0]:
         raise ZeroDivisionError("Cannot divide by zero")
 
     return long_division(
