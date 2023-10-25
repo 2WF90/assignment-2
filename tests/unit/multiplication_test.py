@@ -1,4 +1,3 @@
-from itertools import zip_longest
 from src.helpers import strip
 from src.polynomial.multiplication import multiply
 
