@@ -41,7 +41,7 @@ def gcd(a: list[int], b: list[int], modulus: int) -> list[int]:
         _, rem = long_division(a, b, modulus)
         a = b
         b = rem
-    
+
     _, lc = get_degree_and_leading_coefficient(a)
     return divide_coefficients(a, lc, modulus)
 
@@ -62,7 +62,7 @@ Returns:
     tuple of 3 list of integers, represents the gcd of a and b, x and y
 """
 def xgcd(a: list[int], b: list[int], modulus: int) -> tuple[list[int], list[int], list[int]]:
-    b = strip(b) 
+    b = strip(b)
     x, v, y, u = [1], [1], [0], [0]
 
     while b != [0]:
@@ -76,8 +76,8 @@ def xgcd(a: list[int], b: list[int], modulus: int) -> tuple[list[int], list[int]
         y_temp = y
         x = u
         y = v
-        u = subtract(x_temp, multiply(quot, u, modulus), modulus=modulus)
-        v = subtract(y_temp, multiply(quot, v, modulus), modulus=modulus)
+        u = subtract(x_temp, strip(multiply(quot, u, modulus)), modulus=modulus)
+        v = subtract(y_temp, strip(multiply(quot, v, modulus)), modulus=modulus)
 
     _, lc = get_degree_and_leading_coefficient(a)
     return divide_coefficients(a, lc, modulus), divide_coefficients(x, lc, modulus), divide_coefficients(y, lc, modulus)
