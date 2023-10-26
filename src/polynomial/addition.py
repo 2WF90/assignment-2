@@ -1,7 +1,5 @@
 from src.helpers import zip_longest
 
-# Note ask if we can use itertools library (they will say yes just dont forget to ask)
-
 # ----------------------------------------------------------------
 # POLYNOMIAL ADDITION
 # ----------------------------------------------------------------
