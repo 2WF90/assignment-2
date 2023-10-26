@@ -9,7 +9,7 @@ def test_subtraction():
     assert_exercise("realistic", 3)
 
 
-# def test_irreducible_element_generation(): random
+# def test_irreducible_element_generation(): non-deterministic
 #     assert_exercise("realistic", 4)
 
 
