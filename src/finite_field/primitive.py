@@ -77,7 +77,7 @@ def check_primitivity(f: list[int], poly_modulus: list[int], modulus: int, divis
 
     exp_table = power_table(f, (order - 1) // 2, poly_modulus, modulus)
 
-    #We find all divisors instead of only prime divisors
+    # We find all divisors instead of only prime divisors as finding prime divisors is more expensive
     if divisors == None:
         divisors = find_divisors(order - 1)[1:-1]
 
@@ -127,7 +127,7 @@ def generate_primitve(poly_modulus: list[int], modulus: int, seed: int=69) -> li
     poly_modulus = strip(poly_modulus)
     random.seed(seed)
 
-    #Calculate divisors once
+    # Calculate divisors once
     order = modulus ** (len(poly_modulus) - 1)
     divisors = find_divisors(order - 1)[1:-1]
 

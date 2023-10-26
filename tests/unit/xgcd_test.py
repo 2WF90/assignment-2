@@ -53,7 +53,7 @@ def test_xgcd_is_gcd_1():
     assert div == strip(add(multiply(a, x, modulus), multiply(b, y, modulus), modulus=modulus))
 
 
-#Stress test, this is what it should be able to handle according to the assingment
+# Stress test, this is what it should be able to handle according to the assingment
 def test_xgcd_axby_is_gcd_1():
     a = [340, 164, 283, 94, 162, 4, 398, 361, 380, 426, 218, 38, 502, 245, 32, 178, 372, 294, 61, 428, 497,
          96, 500, 451, 459, 287, 201, 335, 100, 18, 191, 103, 109, 102, 464, 391, 457, 21, 386, 496, 431,

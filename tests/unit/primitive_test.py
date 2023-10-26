@@ -4,7 +4,7 @@ from src.finite_field.primitive import *
 # CHECK PRIMITIVITY
 #----------------------------------------------------------------
 
-#example from lecture notes
+# example from lecture notes
 def test_primitivity_check_bin():
     f = [0, 1]
     poly_modulus = [1, 1, 1]
@@ -12,7 +12,7 @@ def test_primitivity_check_bin():
 
     assert check_primitivity(f, poly_modulus, modulus)
 
-#also example from lecture notes
+# also example from lecture notes
 def test_primitivity_check_tri():
     f = [0, 1]
     poly_modulus = [1, 0, 1]
