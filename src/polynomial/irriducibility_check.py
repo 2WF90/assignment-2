@@ -1,6 +1,7 @@
 from src.helpers import get_degree_and_leading_coefficient
-from subtraction import subtract
-from xgcd import gcd
+from src.polynomial.subtraction import subtract
+from src.polynomial.xgcd import gcd
+
 
 #used to make X^q^t
 def polynomial_coefficients(a: int)-> list[int]:
@@ -12,7 +13,7 @@ def polynomial_coefficients(a: int)-> list[int]:
 def irreducibility_check(
         modulus: int, f: list[int]
 ) -> bool:
-    
+
     # Ensure n > 1
     degree = get_degree_and_leading_coefficient(f)
     if degree <= 1:
