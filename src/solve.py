@@ -22,7 +22,9 @@ from src.polynomial.long_division import long_division
 from src.polynomial.multiplication import multiply
 from src.polynomial.subtraction import subtract
 from src.polynomial.xgcd import xgcd
+from src.polynomial.irriducibility_check import irreducibility_check
 from src.finite_field.primitive import check_primitivity, generate_primitve
+
 
 """
 Polynomial arithmetic:
@@ -77,6 +79,11 @@ def solve(exercise: object):
             g = exercise["g"]
             gcd, x, y = xgcd(f, g, integer_modulus)
             return {"answer-a": strip(x), "answer-b": strip(y), "answer-gcd": strip(gcd)}
+        
+        if exercise_task == "irreducibility_check":
+            f = exercise["f"]
+            return {"answer": irreducibility_check(f, modulus=integer_modulus)}
+
 
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]
