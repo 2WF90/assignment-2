@@ -17,7 +17,7 @@ def multiply(f: list[int], g: list[int], modulus: int) -> list[int]:
     """
     f_padded, g_padded, n = match_length(f, g)
 
-    if n < 64:
+    if n < 64: # experimentally determined threshold
         return primary_multiplication(f_padded, g_padded, modulus)
 
     if n & 1:
@@ -34,12 +34,12 @@ def multiply(f: list[int], g: list[int], modulus: int) -> list[int]:
     z_0 = multiply(x_lo, y_lo, modulus)
     z_1 = subtract(
         multiply(
-            add(x_hi, x_lo, modulus=modulus),
-            add(y_hi, y_lo, modulus=modulus),
+            add(x_lo, x_hi, modulus=modulus),
+            add(y_lo, y_hi, modulus=modulus),
             modulus,
         ),
-        z_0,
         z_2,
+        z_0,
         modulus=modulus,
     )
 
