@@ -1,4 +1,3 @@
-from src.finite_field.modular_exponentation import modular_exponentiation
 from src.polynomial.xgcd import xgcd
 
 
