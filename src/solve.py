@@ -14,6 +14,7 @@
 # Christian Groothuis (1715534)
 ##
 import json
+from src.finite_field.division import division
 from src.finite_field.inversion import inverse
 from src.helpers import strip
 
@@ -71,19 +72,25 @@ def solve(exercise: object):
         if exercise_task == "long_division":
             f = exercise["f"]
             g = exercise["g"]
-            q, r = long_division(f, g, integer_modulus)
-            return {"answer-q": strip(q), "answer-r": strip(r)}
+            try:
+                q, r = long_division(f, g, integer_modulus)
+                return {"answer-q": strip(q), "answer-r": strip(r)}
+            except Exception:
+                return {"answer-q": None, "answer-r": None}
 
         if exercise_task == "extended_euclidean_algorithm":
             f = exercise["f"]
             g = exercise["g"]
             gcd, x, y = xgcd(f, g, integer_modulus)
-            return {"answer-a": strip(x), "answer-b": strip(y), "answer-gcd": strip(gcd)}
-        
+            return {
+                "answer-a": strip(x),
+                "answer-b": strip(y),
+                "answer-gcd": strip(gcd),
+            }
+
         if exercise_task == "irreducibility_check":
             f = exercise["f"]
             return {"answer": irreducibility_check(f, modulus=integer_modulus)}
-
 
     elif exercise_type == "finite_field_arithmetic":
         polynomial_modulus = exercise["polynomial_modulus"]
@@ -114,7 +121,16 @@ def solve(exercise: object):
             result = inverse(f, integer_modulus, polynomial_modulus)
             _, rem = long_division(result, polynomial_modulus, integer_modulus)
             return {"answer": strip(rem)}
-        
+
+        if exercise_task == "division":
+            f = exercise["f"]
+            g = exercise["g"]
+            try:
+                result = division(f, g, polynomial_modulus, integer_modulus)
+                return {"answer": strip(result)}
+            except Exception:
+                return {"answer": None}
+
         if exercise_task == "primitivity_check":
             f = exercise["f"]
             poly_mod = exercise["polynomial_modulus"]
