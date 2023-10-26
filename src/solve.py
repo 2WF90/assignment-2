@@ -30,21 +30,6 @@ from src.polynomial.irreducibility import (
 from src.finite_field.primitive import check_primitivity, generate_primitve
 
 
-"""
-Polynomial arithmetic:
-- xgcd (++)
-- irreducibility_check (++)
-- irreducible_element_generation (+)
-
-Finite field arithmetic:
-- polynomial reduction fixen (+)
-- inversion (using xgcd) (-)
-- division (multiply by inverse) (-)
-- primitivity_check (++)
-- primitive_element_generation (+)
-"""
-
-
 def solve(exercise: object):
     exercise_type = exercise["type"]
     exercise_task = exercise["task"]
