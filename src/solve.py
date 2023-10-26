@@ -73,7 +73,7 @@ def solve(exercise: object):
             try:
                 q, r = long_division(f, g, integer_modulus)
                 return {"answer-q": strip(q), "answer-r": strip(r)}
-            except ZeroDivisionError:
+            except Exception:
                 return {"answer-q": None, "answer-r": None}
 
         if exercise_task == "extended_euclidean_algorithm":
@@ -122,7 +122,7 @@ def solve(exercise: object):
             try:
                 result = division(f, g, polynomial_modulus, integer_modulus)
                 return {"answer": strip(result)}
-            except ZeroDivisionError:
+            except Exception:
                 return {"answer": None}
 
         if exercise_task == "primitivity_check":
