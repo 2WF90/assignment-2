@@ -1,6 +1,3 @@
-import sys
-sys.path.append('/Users/christian/Dev/2WF90/assignment-2')
-
 from src.polynomial.irreducibility import get_random_polynomial
 from src.polynomial.multiplication import multiply
 
