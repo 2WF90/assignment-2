@@ -23,11 +23,11 @@ def division(
     """
     f = strip(f)
 
-    if g == [0] or f == [0]:
+    if g == [0]:
         raise ZeroDivisionError("Cannot divide by zero")
 
     return long_division(
         multiply(f, inverse(g, integer_modulus, polynomial_modulus), integer_modulus),
         polynomial_modulus,
         integer_modulus,
-    )[1] 
+    )[1]
