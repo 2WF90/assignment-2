@@ -35,10 +35,10 @@ def solve(exercise: object):
     exercise_task = exercise["task"]
     integer_modulus = exercise["integer_modulus"]
 
-    if integer_modulus < 2:  # disallowed as per definition of assingment
-        return {"answer": None}
-
     try:
+        if integer_modulus < 2:  # disallowed as per definition of assingment
+            raise ValueError("Integer modulus must be at least 2")
+
         if exercise_type == "polynomial_arithmetic":
             if exercise_task == "addition":
                 a = exercise["f"]
