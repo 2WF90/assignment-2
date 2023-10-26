@@ -16,6 +16,8 @@ Param:
 Returns:
     list of integers, represents the greatest common divisor of a and b (monic polynomial)
 """
+
+
 def gcd(a: list[int], b: list[int], modulus: int) -> list[int]:
     b = strip(b)
 
@@ -48,7 +50,11 @@ Param:
 Returns:
     tuple of 3 list of integers, represents the gcd of a and b, x and y
 """
-def xgcd(a: list[int], b: list[int], modulus: int) -> tuple[list[int], list[int], list[int]]:
+
+
+def xgcd(
+    a: list[int], b: list[int], modulus: int
+) -> tuple[list[int], list[int], list[int]]:
     b = strip(b)
     x, v, y, u = [1], [1], [0], [0]
 
@@ -67,7 +73,7 @@ def xgcd(a: list[int], b: list[int], modulus: int) -> tuple[list[int], list[int]
         v = subtract(y_temp, strip(multiply(quot, v, modulus)), modulus=modulus)
 
     lc = get_lead_coeff(a)
-    
+
     if lc != 1:  # gcd is not monic
         gcd_inverse = integer_inverse(lc, modulus)
         a = multiply(a, [gcd_inverse], modulus)

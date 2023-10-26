@@ -3,7 +3,9 @@ from src.polynomial.addition import add
 from src.polynomial.subtraction import subtract
 
 
-def multiply(f: list[int], g: list[int], modulus: int) -> list[int]:
+def multiply(
+    f: list[int], g: list[int], modulus: int, using_karatsuba: bool = True
+) -> list[int]:
     """
     Multiplies two polynomials f and g using the Karatsuba algorithm.
 
@@ -17,7 +19,10 @@ def multiply(f: list[int], g: list[int], modulus: int) -> list[int]:
     """
     f_padded, g_padded, n = match_length(f, g)
 
-    if n < 64: # experimentally determined threshold
+    if not using_karatsuba:
+        return primary_multiplication(f_padded, g_padded, modulus)
+
+    if n < 80: # experimentally determined threshold
         return primary_multiplication(f_padded, g_padded, modulus)
 
     if n & 1:
