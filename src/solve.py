@@ -80,7 +80,7 @@ def solve(exercise: object):
                 try:
                     q, r = long_division(f, g, integer_modulus)
                     return {"answer-q": strip(q), "answer-r": strip(r)}
-                except Exception:
+                except:
                     return {"answer-q": None, "answer-r": None}
 
             if exercise_task == "extended_euclidean_algorithm":
@@ -155,7 +155,7 @@ def solve(exercise: object):
                 return {"answer": generate_primitve(poly_mod, modulus)}
 
         raise ValueError("Invalid exercise type or task")
-    except Exception:
+    except:
         return {"answer": None}
 
 
