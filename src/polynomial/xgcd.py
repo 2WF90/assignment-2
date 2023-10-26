@@ -16,8 +16,6 @@ Param:
 Returns:
     list of integers, represents the greatest common divisor of a and b (monic polynomial)
 """
-
-
 def gcd(a: list[int], b: list[int], modulus: int) -> list[int]:
     b = strip(b)
 
@@ -50,8 +48,6 @@ Param:
 Returns:
     tuple of 3 list of integers, represents the gcd of a and b, x and y
 """
-
-
 def xgcd(
     a: list[int], b: list[int], modulus: int
 ) -> tuple[list[int], list[int], list[int]]:
