@@ -48,7 +48,8 @@ def get_degree_and_leading_coefficient(f: list[int]):
     for degree, coefficient in reversed(list(enumerate(f))):
         if coefficient != 0:
             return degree, coefficient
-    return 0, 0
+
+    return -1, 0 # zero polynomial
 
 
 def get_lead_coeff(f: list[int]) -> int:
