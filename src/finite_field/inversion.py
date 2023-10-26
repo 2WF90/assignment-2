@@ -13,7 +13,15 @@ def inverse(f: list[int], integer_modulus: int, polynomial_modulus: list[int]):
 
     Returns:
         list[int]: The inverse of f in the finite field.
+    Raises:
+        ValueError: If f is not invertible.
     """
-    _, x, _ = xgcd(f, polynomial_modulus, integer_modulus)
+    if f == [0]:
+        raise ValueError("Can not invert the zero polynomial")
+
+    gcd, x, _ = xgAddcd(f, polynomial_modulus, integer_modulus)
+
+    if gcd != [1]:
+        raise ValueError("The polynomial is not invertible")
 
     return x
