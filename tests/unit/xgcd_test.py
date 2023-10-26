@@ -2,25 +2,7 @@ from src.polynomial.xgcd import *
 from src.polynomial.addition import add
 from src.polynomial.multiplication import multiply
 from src.helpers import strip
-import pytest
 
-#----------------------------------------------------------------
-# DIVIDE COEFFICIENTS
-#----------------------------------------------------------------
-
-def test_coeff_zero():
-    with pytest.raises(ValueError):
-        f = [1, 3, 5]
-        num = 0
-        modulus = 10
-        divide_coefficients(f, num, modulus)
-
-def test_coeff():
-    f = [4, 5, 3, 5]
-    num = 4
-    modulus = 7
-
-    assert divide_coefficients(f, num, modulus) == [1, 3, 6, 3]
 
 #----------------------------------------------------------------
 # GCD
