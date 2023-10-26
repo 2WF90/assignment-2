@@ -30,4 +30,4 @@ def division(
         multiply(f, inverse(g, integer_modulus, polynomial_modulus), integer_modulus),
         polynomial_modulus,
         integer_modulus,
-    )[1]
+    )[1] 
