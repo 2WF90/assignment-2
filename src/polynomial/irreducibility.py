@@ -1,9 +1,10 @@
 import random
 from src.helpers import get_degree
 from src.polynomial.xgcd import gcd
+from src.integer.prime import filter_divisors, gen_primes
+from src.polynomial.long_division import long_division
 
-
-def is_irreducible(f: list[int], modulus: int) -> bool:
+def is_irreducible(f: list[int], modulus: int, primes: list[int] = None) -> bool:
     """
     Determines whether the given polynomial f is irreducible over the field Z mod modulus.
 
@@ -14,15 +15,18 @@ def is_irreducible(f: list[int], modulus: int) -> bool:
     Returns:
         bool: True if f is irreducible over Z mod modulus, False otherwise.
     """
-    p = modulus
-    t = 1
 
-    while gcd(f, [0, -1] + [0] * (p**t - 2) + [1], modulus) == [
-        1
-    ]:  # check if gcd(f, X^(p^t) - X, modulus) == 1
-        t = t + 1
+    if primes == None:
+        primes = filter_divisors(modulus, gen_primes(modulus))
+    print(modulus, primes)
+    q = modulus
+    n = get_degree(f)
+    for p in primes:
+        t = n // p
+        if gcd(f, [0, -1] + [0] * (q**t - 2) + [1], modulus) != [1]:
+            return False
 
-    return t == get_degree(f)
+    return (long_division([0, -1] + [0] * (q**primes[-1] - 2) + [1], f, modulus))[1] == [0]
 
 
 def generate_irreducible_polynomial(degree: int, modulus: int) -> list[int]:
@@ -36,9 +40,10 @@ def generate_irreducible_polynomial(degree: int, modulus: int) -> list[int]:
     Returns:
         list[int]: A list of coefficients representing the generated polynomial.
     """
-    f = get_random_polynomial(degree, modulus)
+    div_primes = filter_divisors(modulus, gen_primes(modulus))
 
-    while not is_irreducible(f, modulus):
+    f = get_random_polynomial(degree, modulus)
+    while not is_irreducible(f, modulus, div_primes):
         f = get_random_polynomial(degree, modulus)
 
     return f
