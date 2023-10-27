@@ -37,6 +37,37 @@ def match_length(f: list[int], g: list[int]) -> tuple[list[int], list[int], int]
 
 def get_degree_and_leading_coefficient(f: list[int]):
     """
+    Returns the degree and leading coefficient of a polynomial represented by a list of coefficients.
+
+    Args:
+        f (list[int]): A list of coefficients representing a polynomial.
+
+    Returns:
+        Tuple[int, int]: A tuple containing the degree and leading coefficient of the polynomial.
+    """
+    for degree, coefficient in reversed(list(enumerate(f))):
+        if coefficient != 0:
+            return degree, coefficient
+
+    return -1, 0 # zero polynomial
+
+
+def get_lead_coeff(f: list[int]) -> int:
+    """
+    Returns the leading coefficient of the polynomial `f`.
+    For example, the polynomial 3x^2 + 2x + 1 represented as the list `[1, 2, 3]` has a leading coefficient of 3.
+
+    Args:
+    - f: A list of integers representing the coefficients of a polynomial.
+
+    Returns:
+    - An integer representing the leading coefficient of the polynomial.
+    """
+    return get_degree_and_leading_coefficient(f)[1]
+
+
+def get_degree(f: list[int]):
+    """
     Returns the degree of the polynomial `f`.
     For example, the polynomial 3x^2 + 2x + 1 represented as the list `[1, 2, 3]` has a degree of 2.
 
@@ -46,10 +77,7 @@ def get_degree_and_leading_coefficient(f: list[int]):
     Returns:
     - An integer representing the degree of the polynomial.
     """
-    for degree, coefficient in reversed(list(enumerate(f))):
-        if coefficient != 0:
-            return degree, coefficient
-    return 0, 0
+    return get_degree_and_leading_coefficient(f)[0]
 
 
 def reduce_int_modulus(f: list[int], modulus: int):
@@ -65,15 +93,17 @@ def reduce_int_modulus(f: list[int], modulus: int):
     """
     return [x % modulus for x in f]
 
-#----------------------------------------------------------------
+
+# ----------------------------------------------------------------
 # ITERTOOLS
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 
 # We were not allowed to use the itertools library because "it was to large"
 # So I just copied the source code of these 2 specific functions (https://docs.python.org/3/library/itertools.html)
 # In my opinion this falls under fair use since this does not make the assingment significantly easier,
 # it just makes our code a bit cleaner readable.
 # I checked the Python license and this should be fine.
+
 
 def repeat(object, times=None):
     # repeat(10, 3) --> 10 10 10
@@ -83,6 +113,7 @@ def repeat(object, times=None):
     else:
         for i in range(times):
             yield object
+
 
 def zip_longest(*args, fillvalue=None):
     # zip_longest('ABCD', 'xy', fillvalue='-') --> Ax By C- D-

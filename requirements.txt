@@ -12,3 +12,5 @@ pycodestyle==2.11.0
 pyflakes==3.1.0
 pytest==7.4.2
 pytest-timeout==2.1.0
+rich==13.6.0
+richbench==1.0.3

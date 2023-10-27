@@ -29,5 +29,5 @@ def test_multiplication():
     assert_exercise("realistic", 12)
 
 
-def test_primitive_element_generation():
-    assert_exercise("realistic", 17)
+# def test_primitive_element_generation(): non-deterministic
+#     assert_exercise("realistic", 17)

@@ -24,16 +24,16 @@ Returns:
 def power_table(f: list[int], maxExp: int, poly_modulus: list[int], modulus: int) -> list[list[int]]:
     exp = [strip(f)]
     while maxExp:
-        temp_p = exp[-1].copy() #not sure if multiplication changes input as side effect
+        temp_p = exp[-1]
         _, rem = long_division(multiply(temp_p, temp_p, modulus), poly_modulus, modulus)
         exp.append(rem)
 
         maxExp = maxExp >> 1
-    
+
     return exp
 
 """
-Uses a exponents_table to calculate the result of certain polynomial (f) to the power e 
+Uses a exponents_table to calculate the result of certain polynomial (f) to the power e
 (f is implicitly defined by the table)
 
 Args:
@@ -53,7 +53,7 @@ def power(exp_table: list[list[int]], e: int, poly_modulus: list[int], modulus: 
             _, num = long_division(multiply(num, exp_table[itr], modulus), poly_modulus, modulus)
         e = e >> 1
         itr = itr + 1
-    
+
     return num
 
 """
@@ -64,9 +64,9 @@ Args:
     f (list[int]):          represents polynomial f
     poly_modulus (int):     polynomial modulus of the field
     modulus (int):          modulus of the field
-    divisors (list[int]):   Optional argument, default = None, functions that call check_primitivity 
+    divisors (list[int]):   Optional argument, default = None, functions that call check_primitivity
                             many times with the same divisors can compute those themselves
-    
+
 Returns:
     bool: States if f is primitive
 """
@@ -77,14 +77,14 @@ def check_primitivity(f: list[int], poly_modulus: list[int], modulus: int, divis
 
     exp_table = power_table(f, (order - 1) // 2, poly_modulus, modulus)
 
-    #We find all divisors instead of only prime divisors
+    # We find all divisors instead of only prime divisors as finding prime divisors is more expensive
     if divisors == None:
         divisors = find_divisors(order - 1)[1:-1]
 
     for e in divisors:
         if strip(power(exp_table, e, poly_modulus, modulus)) == [1]:
             return False
-    
+
     return True
 
 #----------------------------------------------------------------
@@ -107,7 +107,7 @@ def random_poly(modulus: int, length: int) -> list[int]:
 
     while p == [0] or p == [1]:
         p = strip([random.randint(0, modulus - 1) for _ in range(length)])
-    
+
     return p
 
 """
@@ -127,12 +127,12 @@ def generate_primitve(poly_modulus: list[int], modulus: int, seed: int=69) -> li
     poly_modulus = strip(poly_modulus)
     random.seed(seed)
 
-    #Calculate divisors once
+    # Calculate divisors once
     order = modulus ** (len(poly_modulus) - 1)
     divisors = find_divisors(order - 1)[1:-1]
 
     random_f = random_poly(modulus, len(poly_modulus) - 1)
     while not check_primitivity(random_f, poly_modulus, modulus, divisors=divisors):
         random_f = random_poly(modulus, len(poly_modulus) - 1)
-    
+
     return random_f
