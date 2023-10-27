@@ -35,7 +35,7 @@ def long_division(
 
         qoutient[len(remainder) - len(g)] = leading_coeff
 
-        for i in range(len(g)):
+        for i in range(len(g)): # subtract (g * leading_coeff) from remainder
             remainder[-i - 1] -= leading_coeff * g[-i - 1] % integer_modulus
 
         remainder = reduce_int_modulus(strip(remainder), integer_modulus)
