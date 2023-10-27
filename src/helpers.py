@@ -35,7 +35,7 @@ def match_length(f: list[int], g: list[int]) -> tuple[list[int], list[int], int]
     return padded_f, padded_g, max_length
 
 
-def get_degree_and_leading_coefficient(f: list[int]):
+def get_degree_and_leading_coefficient(f: list[int]) -> tuple[int, int]:
     """
     Returns the degree and leading coefficient of a polynomial represented by a list of coefficients.
 
@@ -66,7 +66,7 @@ def get_lead_coeff(f: list[int]) -> int:
     return get_degree_and_leading_coefficient(f)[1]
 
 
-def get_degree(f: list[int]):
+def get_degree(f: list[int]) -> int:
     """
     Returns the degree of the polynomial `f`.
     For example, the polynomial 3x^2 + 2x + 1 represented as the list `[1, 2, 3]` has a degree of 2.
