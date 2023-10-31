@@ -81,7 +81,7 @@ def solve(exercise: object):
                         "answer-gcd": strip(gcd),
                     }
                 except:
-                    return {"answer-gcd": None, "answer-x": None, "answer-y": None}
+                    return {"answer-a": None, "answer-b": None, "answer-gcd": None}
 
             if exercise_task == "irreducibility_check":
                 f = exercise["f"]
